@@ -1,0 +1,18 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ 'cart.title' | t }}</h1>
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post">
+      {% for item in cart.items %}
+        <article class="forma-card__body">
+          <strong>{{ item.product.title }}</strong>
+          <p class="forma-muted">{{ item.variant.title }} × {{ item.quantity }}</p>
+          <p class="forma-price">{{ item.final_line_price | money }}</p>
+        </article>
+      {% endfor %}
+      <p class="forma-price">{{ 'cart.total' | t }}: {{ cart.total_price | money }}</p>
+      <button class="forma-button" type="submit" name="checkout">{{ 'cart.checkout' | t }}</button>
+    </form>
+  {% else %}
+    <p class="forma-muted">{{ 'cart.empty' | t }}</p>
+  {% endif %}
+</section>

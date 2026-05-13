@@ -1,0 +1,11 @@
+{
+  "name": "@forma/ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "node --check index.js",
+    "check": "node --check index.js"
+  }
+}

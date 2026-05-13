@@ -1,0 +1,96 @@
+{
+  "general": {
+    "cart": "Cart",
+    "shop": "Shop",
+    "returns": "Returns",
+    "privacy": "Privacy",
+    "breadcrumbs": {
+      "aria_label": "Breadcrumbs",
+      "home": "Home",
+      "home_link_title": "Back to the frontpage"
+    },
+    "404": {
+      "title": "404",
+      "subtext_html": "The page you requested does not exist."
+    }
+  },
+  "home": {
+    "eyebrow": "New campaign",
+    "heading": "Essentials with form, intention and character.",
+    "text": "A Shopify experience inspired by Timber, ready for products, collections and cart.",
+    "cta": "Shop now",
+    "theme_card_title": "FORMA Shopify Theme",
+    "theme_card_text": "Layout, snippets, assets and templates organized."
+  },
+  "homepage": {
+    "onboarding": {
+      "modal_title": "Almost there",
+      "no_collections_html": "Create a featured collection to populate this section."
+    }
+  },
+  "collections": {
+    "title": "Collections",
+    "sorting": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "date_descending": "Date, new to old",
+      "date_ascending": "Date, old to new"
+    },
+    "onboarding": {
+      "modal_title": "Add products",
+      "no_products_html": "This collection is ready for products from Shopify Admin."
+    }
+  },
+  "product": {
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out"
+  },
+  "cart": {
+    "title": "Cart",
+    "checkout": "Checkout",
+    "empty": "Your cart is empty.",
+    "total": "Total"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search products",
+    "submit": "Search",
+    "empty": "No results."
+  },
+  "customer": {
+    "account": "Account",
+    "create_account": "Create account",
+    "addresses": "Addresses",
+    "no_addresses": "No saved addresses.",
+    "logout": "Log out",
+    "password": "Password",
+    "login": "Log in",
+    "last_name": "Last name",
+    "order": "Order"
+  },
+  "contact": {
+    "title": "Contact",
+    "success": "Thank you. We will reply soon.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send"
+  },
+  "blogs": {
+    "comments": {
+      "title": "Comments"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Gift card",
+      "subtext": "Here is your gift card.",
+      "redeem": "Use this code at checkout."
+    }
+  }
+}

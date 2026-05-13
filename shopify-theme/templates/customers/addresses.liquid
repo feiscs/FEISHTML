@@ -1,0 +1,8 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ 'customer.addresses' | t }}</h1>
+  {% for address in customer.addresses %}
+    <article class="forma-card__body">{{ address | format_address }}</article>
+  {% else %}
+    <p class="forma-muted">{{ 'customer.no_addresses' | t }}</p>
+  {% endfor %}
+</section>

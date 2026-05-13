@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink color",
+        "default": "#16130f"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper color",
+        "default": "#fffaf2"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#b96f4f"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection",
+        "label": "Featured collection"
+      }
+    ]
+  }
+]

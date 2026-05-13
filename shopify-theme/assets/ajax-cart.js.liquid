@@ -1,0 +1,33 @@
+/*============================================================================
+  Lightweight Ajax cart helper inspired by Timber ajax-cart.js.liquid.
+  Uses Shopify Ajax API endpoints when fetch is available and falls back to forms.
+==============================================================================*/
+(function formaAjaxCart(window, document) {
+  'use strict';
+
+  window.FORMA = window.FORMA || {};
+
+  window.FORMA.getCart = function getCart() {
+    return fetch('/cart.js', { headers: { Accept: 'application/json' } }).then(function parse(response) {
+      return response.json();
+    });
+  };
+
+  window.FORMA.changeCart = function changeCart(line, quantity) {
+    return fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ line: line, quantity: quantity }),
+    }).then(function parse(response) { return response.json(); });
+  };
+
+  document.addEventListener('click', function onCartChange(event) {
+    var button = event.target.closest('[data-cart-change]');
+    if (!button || !window.fetch) return;
+    event.preventDefault();
+    window.FORMA.changeCart(Number(button.dataset.line), Number(button.dataset.quantity)).then(function notify(cart) {
+      document.dispatchEvent(new CustomEvent('forma:cart:change', { detail: cart }));
+      window.location.reload();
+    });
+  });
+})(window, document);

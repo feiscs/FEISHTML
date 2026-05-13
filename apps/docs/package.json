@@ -1,0 +1,15 @@
+{
+  "name": "@forma/app-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node ../../scripts/smoke-app.js .",
+    "check": "node ../../scripts/smoke-app.js .",
+    "dev": "python3 -m http.server 4175 --directory apps/docs",
+    "start": "python3 -m http.server ${PORT:-4175} --directory apps/docs"
+  },
+  "dependencies": {
+    "@forma/config": "*",
+    "@forma/ui": "*"
+  }
+}

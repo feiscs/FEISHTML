@@ -1,0 +1,16 @@
+{
+  "name": "@forma/app-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node ../../scripts/smoke-app.js .",
+    "check": "node ../../scripts/smoke-app.js .",
+    "dev": "python3 -m http.server 4174 --directory apps/storefront",
+    "start": "python3 -m http.server ${PORT:-4174} --directory apps/storefront"
+  },
+  "dependencies": {
+    "@forma/config": "*",
+    "@forma/storefront-data": "*",
+    "@forma/ui": "*"
+  }
+}

@@ -1,0 +1,10 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ 'collections.title' | t }}</h1>
+  <div class="forma-grid">
+    {% for collection in collections %}
+      <article class="forma-card__body">
+        <h2><a class="forma-link" href="{{ collection.url }}">{{ collection.title }}</a></h2>
+      </article>
+    {% endfor %}
+  </div>
+</section>
