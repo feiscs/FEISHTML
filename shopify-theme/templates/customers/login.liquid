@@ -1,0 +1,9 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ 'customer.account' | t }}</h1>
+  {% form 'customer_login', class: 'forma-form' %}
+    {{ form.errors | default_errors }}
+    <input type="email" name="customer[email]" placeholder="{{ 'contact.email' | t }}" required>
+    <input type="password" name="customer[password]" placeholder="{{ 'customer.password' | t }}" required>
+    <button class="forma-button" type="submit">{{ 'customer.login' | t }}</button>
+  {% endform %}
+</section>

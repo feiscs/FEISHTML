@@ -1,0 +1,12 @@
+<!-- /snippets/ajax-cart-template.liquid -->
+<div class="ajax-cart" data-ajax-cart-template>
+  <h2>{{ 'cart.title' | t }}</h2>
+  {% for item in cart.items %}
+    <div class="ajax-cart__item">
+      <a href="{{ item.url }}">{{ item.product.title }}</a>
+      <span>{{ item.quantity }} × {{ item.final_price | money }}</span>
+    </div>
+  {% else %}
+    <p>{{ 'cart.empty' | t }}</p>
+  {% endfor %}
+</div>

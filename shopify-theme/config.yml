@@ -1,0 +1,5 @@
+development:
+  password: ${SHOPIFY_THEME_PASSWORD}
+  theme_id: ${SHOPIFY_THEME_ID}
+  store: ${SHOPIFY_SHOP_DOMAIN}
+  directory: shopify-theme

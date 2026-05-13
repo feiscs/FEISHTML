@@ -1,0 +1,96 @@
+{
+  "general": {
+    "cart": "Carrito",
+    "shop": "Tienda",
+    "returns": "Devoluciones",
+    "privacy": "Privacidad",
+    "breadcrumbs": {
+      "aria_label": "Breadcrumbs",
+      "home": "Inicio",
+      "home_link_title": "Volver al inicio"
+    },
+    "404": {
+      "title": "404",
+      "subtext_html": "La página solicitada no existe."
+    }
+  },
+  "home": {
+    "eyebrow": "Nueva campaña",
+    "heading": "Esenciales con forma, intención y carácter.",
+    "text": "Una experiencia Shopify inspirada en Timber, lista para productos, colecciones y carrito.",
+    "cta": "Comprar ahora",
+    "theme_card_title": "FORMA Shopify Theme",
+    "theme_card_text": "Layout, snippets, assets y templates organizados."
+  },
+  "homepage": {
+    "onboarding": {
+      "modal_title": "Casi listo",
+      "no_collections_html": "Crea una colección destacada para poblar esta sección."
+    }
+  },
+  "collections": {
+    "title": "Colecciones",
+    "sorting": {
+      "title": "Ordenar por",
+      "featured": "Destacados",
+      "best_selling": "Más vendidos",
+      "az": "Alfabéticamente, A-Z",
+      "za": "Alfabéticamente, Z-A",
+      "price_ascending": "Precio, menor a mayor",
+      "price_descending": "Precio, mayor a menor",
+      "date_descending": "Fecha, nuevo a antiguo",
+      "date_ascending": "Fecha, antiguo a nuevo"
+    },
+    "onboarding": {
+      "modal_title": "Agrega productos",
+      "no_products_html": "Esta colección está lista para productos desde Shopify Admin."
+    }
+  },
+  "product": {
+    "add_to_cart": "Agregar al carrito",
+    "sold_out": "Agotado"
+  },
+  "cart": {
+    "title": "Carrito",
+    "checkout": "Checkout",
+    "empty": "Tu carrito está vacío.",
+    "total": "Total"
+  },
+  "search": {
+    "title": "Buscar",
+    "placeholder": "Buscar productos",
+    "submit": "Buscar",
+    "empty": "No hay resultados."
+  },
+  "customer": {
+    "account": "Cuenta",
+    "create_account": "Crear cuenta",
+    "addresses": "Direcciones",
+    "no_addresses": "No hay direcciones guardadas.",
+    "logout": "Cerrar sesión",
+    "password": "Contraseña",
+    "login": "Entrar",
+    "last_name": "Apellido",
+    "order": "Pedido"
+  },
+  "contact": {
+    "title": "Contacto",
+    "success": "Gracias. Te responderemos pronto.",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "submit": "Enviar"
+  },
+  "blogs": {
+    "comments": {
+      "title": "Comentarios"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Tarjeta de regalo",
+      "subtext": "Aquí está tu tarjeta de regalo.",
+      "redeem": "Usa este código en checkout."
+    }
+  }
+}

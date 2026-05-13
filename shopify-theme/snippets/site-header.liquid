@@ -1,0 +1,14 @@
+<header class="forma-header" role="banner">
+  <div class="forma-shell forma-header__inner">
+    <a class="forma-logo" href="{{ routes.root_url }}">{{ shop.name | default: 'FORMA' }}</a>
+    <nav class="forma-nav" role="navigation" aria-label="Primary">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% else %}
+        <a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a>
+        <a href="{{ routes.cart_url }}">Cart</a>
+      {% endfor %}
+    </nav>
+    <a class="forma-link" href="{{ routes.cart_url }}">{{ 'general.cart' | t }} ({{ cart.item_count }})</a>
+  </div>
+</header>

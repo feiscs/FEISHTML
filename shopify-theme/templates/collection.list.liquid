@@ -1,0 +1,9 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ collection.title }}</h1>
+  {% for product in collection.products %}
+    <article class="forma-card__body">
+      <a class="forma-link" href="{{ product.url | within: collection }}">{{ product.title }}</a>
+      <span class="forma-price">{{ product.price | money }}</span>
+    </article>
+  {% endfor %}
+</section>
