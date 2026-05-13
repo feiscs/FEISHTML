@@ -1,0 +1,20 @@
+{
+  "name": "forma-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FORMA editorial ecommerce storefront with Shopify, Supabase, Chatbase and Vercel integration hooks.",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "check": "npm run verify:files && node --check assets/integrations.js && node --check assets/store.js && node --check scripts/verify-files.js && ruby shopify-theme/spec/theme_structure_spec.rb",
+    "start": "python3 -m http.server ${PORT:-4173}",
+    "verify:files": "node scripts/verify-files.js",
+    "theme:spec": "cd shopify-theme && bundle exec rspec"
+  },
+  "keywords": [
+    "ecommerce",
+    "shopify",
+    "supabase",
+    "chatbase",
+    "vercel"
+  ]
+}

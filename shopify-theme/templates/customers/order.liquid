@@ -1,0 +1,5 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ 'customer.order' | t }} {{ order.name }}</h1>
+  <p class="forma-muted">{{ order.created_at | date: format: 'date' }}</p>
+  <p class="forma-price">{{ order.total_price | money }}</p>
+</section>

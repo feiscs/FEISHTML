@@ -1,0 +1,14 @@
+<article class="forma-shell">
+  <h1 class="forma-title">{{ article.title }}</h1>
+  <p class="forma-muted">{{ article.published_at | date: format: 'date' }}</p>
+  <div>{{ article.content }}</div>
+</article>
+
+{% if blog.comments_enabled? %}
+  <section class="forma-shell">
+    <h2>{{ 'blogs.comments.title' | t }}</h2>
+    {% for comment in article.comments %}
+      {% render 'comment', comment: comment %}
+    {% endfor %}
+  </section>
+{% endif %}
