@@ -19,7 +19,9 @@ Edit `assets/config.js` locally for demos, or generate it during Vercel builds f
 2. Enable product read permissions and copy the Storefront access token.
 3. Set `shopify.domain` to the shop domain, for example `forma.myshopify.com`.
 4. Set `shopify.enableRemoteProducts` to `true`.
-5. The storefront falls back to the local demo catalog if Shopify is not configured or fails.
+5. For the current Shopify store, use `feispla.myshopify.com` with Storefront API version `2025-04`; keep `SHOPIFY_STOREFRONT_ACCESS_TOKEN` in Vercel/local environment variables, not in git.
+6. Set `SHOPIFY_PRODUCT_LIMIT=50000` as the requested product limit target. The browser Storefront path paginates safely and caps hydration at 25,000 products; use server-side Admin/Bulk workflows for larger exports.
+7. The storefront falls back to the local demo catalog if Shopify is not configured or fails.
 
 
 
@@ -72,8 +74,8 @@ The static Vercel storefront can keep using `assets/integrations.js` for safe St
 ## Supabase path
 
 1. Create a Supabase project.
-2. Run `supabase/migrations/202605130001_storefront_core.sql`.
-3. Put the project URL and anon key into runtime config.
+2. Run the Supabase migrations in `supabase/migrations/`; it enables RLS and anonymous insert-only policies with basic length/shape checks.
+3. Put the project URL and anon key into runtime config. The current project URL is `https://nejzzerwtgtbqawaizuo.supabase.co` and the browser key is the provided `sb_publishable_...` key.
 4. The storefront will insert:
    - `cart_add` events into `store_events`.
    - `newsletter_signup` rows into `newsletter_signups`.

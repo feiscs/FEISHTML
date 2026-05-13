@@ -389,7 +389,7 @@ function closeModal() {
 function renderIntegrationStatus() {
   const config = window.FormaIntegrations?.getConfig?.() || {};
   const statuses = {
-    shopify: config.shopify?.enableRemoteProducts && config.shopify?.domain ? 'Conectado' : 'Modo demo',
+    shopify: config.shopify?.enableRemoteProducts && config.shopify?.domain && config.shopify?.storefrontToken ? 'Conectado' : 'Modo demo',
     supabase: config.supabase?.url && config.supabase?.anonKey ? 'Conectado' : 'Modo demo',
     chatbase: config.chatbase?.enabled && config.chatbase?.botId ? 'Activo' : 'Modo demo',
   };
