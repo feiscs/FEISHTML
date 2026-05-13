@@ -1,0 +1,33 @@
+/*============================================================================
+  Timber-inspired utility helpers for FORMA.
+  Includes transition prep and URL parameter replacement patterns commonly used
+  by vintage Shopify themes.
+==============================================================================*/
+(function formaTimber(window, document) {
+  'use strict';
+
+  window.FORMA = window.FORMA || {};
+
+  window.FORMA.prepareTransition = function prepareTransition(element) {
+    if (!element) return;
+    element.classList.add('is-transitioning');
+    element.addEventListener('transitionend', function onTransitionEnd() {
+      element.classList.remove('is-transitioning');
+      element.removeEventListener('transitionend', onTransitionEnd);
+    });
+    element.offsetWidth;
+  };
+
+  window.FORMA.replaceUrlParam = function replaceUrlParam(url, paramName, paramValue) {
+    var pattern = new RegExp('(' + paramName + '=).*?(&|$)');
+    if (url.search(pattern) >= 0) {
+      return url.replace(pattern, '$1' + paramValue + '$2');
+    }
+    return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
+  };
+
+  document.addEventListener('change', function onSortChange(event) {
+    if (!event.target.matches('[data-collection-sort]')) return;
+    window.location.href = window.FORMA.replaceUrlParam(window.location.href, 'sort_by', event.target.value);
+  });
+})(window, document);

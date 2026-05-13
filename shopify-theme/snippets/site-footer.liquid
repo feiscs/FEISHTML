@@ -1,0 +1,13 @@
+<footer class="forma-footer" role="contentinfo">
+  <div class="forma-shell forma-footer__inner">
+    <p class="forma-muted">&copy; {{ 'now' | date: '%Y' }} {{ shop.name | default: 'FORMA' }}</p>
+    <nav class="forma-nav" aria-label="Footer">
+      {% for link in linklists.footer.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% else %}
+        <a href="/policies/refund-policy">{{ 'general.returns' | t }}</a>
+        <a href="/policies/privacy-policy">{{ 'general.privacy' | t }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</footer>

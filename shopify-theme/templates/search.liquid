@@ -1,0 +1,18 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ 'search.title' | t }}</h1>
+  <form action="{{ routes.search_url }}" method="get" class="forma-form">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}">
+    <button class="forma-button" type="submit">{{ 'search.submit' | t }}</button>
+  </form>
+  {% if search.performed %}
+    <div class="forma-grid">
+      {% for item in search.results %}
+        {% if item.object_type == 'product' %}
+          {% render 'product-card', product: item %}
+        {% endif %}
+      {% else %}
+        <p class="forma-muted">{{ 'search.empty' | t }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>

@@ -1,0 +1,16 @@
+<article class="forma-card">
+  <a class="forma-card__media" href="{{ product.url | within: collection }}" aria-label="{{ product.title | escape }}">
+    {% if product.featured_image %}
+      {{ product.featured_image | image_url: width: 720 | image_tag: loading: 'lazy', alt: product.featured_image.alt | escape }}
+    {% endif %}
+  </a>
+  <div class="forma-card__body">
+    <h3><a class="forma-link" href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+    <p class="forma-price">
+      {% if product.compare_at_price > product.price %}
+        <s>{{ product.compare_at_price | money }}</s>
+      {% endif %}
+      {{ product.price | money }}
+    </p>
+  </div>
+</article>

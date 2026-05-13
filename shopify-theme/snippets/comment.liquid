@@ -1,0 +1,6 @@
+<!-- /snippets/comment.liquid -->
+<article class="comment forma-card__body" id="comment-{{ comment.id }}">
+  <h3>{{ comment.author }}</h3>
+  <p class="forma-muted">{{ comment.created_at | date: format: 'date' }}</p>
+  <div>{{ comment.content }}</div>
+</article>

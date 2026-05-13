@@ -1,0 +1,15 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ collection.title }}</h1>
+  {% if collection.description != blank %}
+    <div class="forma-muted">{{ collection.description }}</div>
+  {% endif %}
+  {% render 'collection-sorting' %}
+
+  <div class="forma-grid">
+    {% for product in collection.products %}
+      {% render 'product-card', product: product, collection: collection %}
+    {% else %}
+      {% render 'onboarding-empty-collection' %}
+    {% endfor %}
+  </div>
+</section>

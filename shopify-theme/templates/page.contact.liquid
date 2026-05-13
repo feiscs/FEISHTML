@@ -1,0 +1,13 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{% if page.title != blank %}{{ page.title }}{% else %}{{ 'contact.title' | t }}{% endif %}</h1>
+  {% form 'contact', class: 'forma-form' %}
+    {% if form.posted_successfully? %}
+      <p>{{ 'contact.success' | t }}</p>
+    {% endif %}
+    {{ form.errors | default_errors }}
+    <input type="text" name="contact[name]" placeholder="{{ 'contact.name' | t }}" value="{{ form.name }}">
+    <input type="email" name="contact[email]" placeholder="{{ 'contact.email' | t }}" value="{{ form.email }}" required>
+    <textarea name="contact[body]" placeholder="{{ 'contact.message' | t }}">{{ form.body }}</textarea>
+    <button class="forma-button" type="submit">{{ 'contact.submit' | t }}</button>
+  {% endform %}
+</section>
