@@ -9,6 +9,10 @@
 - Chatbase:
 - Vercel:
 
+## Review links
+
+- Plain diff/patch URL:
+
 ## Testing
 
 - [ ] `npm run check`

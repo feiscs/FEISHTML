@@ -5,8 +5,9 @@ require "shopify_api"
 module FormaShopify
   class AdminClient
     PRODUCTS_QUERY = <<~GRAPHQL
-      query FormaProducts($first: Int!) {
-        products(first: $first, sortKey: CREATED_AT, reverse: true) {
+      query FormaProducts($first: Int!, $after: String) {
+        products(first: $first, after: $after, sortKey: CREATED_AT, reverse: true) {
+          pageInfo { hasNextPage endCursor }
           edges {
             node {
               id
@@ -41,8 +42,26 @@ module FormaShopify
     end
 
     def products(first: 10)
-      response = @client.query(query: PRODUCTS_QUERY, variables: { first: first })
-      response.body.fetch("data").fetch("products").fetch("edges").map { |edge| edge.fetch("node") }
+      requested_limit = Integer(first)
+      page_size = [requested_limit, 250].min
+      after = nil
+      products = []
+
+      while products.length < requested_limit
+        response = @client.query(
+          query: PRODUCTS_QUERY,
+          variables: { first: [page_size, requested_limit - products.length].min, after: after }
+        )
+        connection = response.body.fetch("data").fetch("products")
+        products.concat(connection.fetch("edges").map { |edge| edge.fetch("node") })
+
+        page_info = connection.fetch("pageInfo")
+        break unless page_info.fetch("hasNextPage") && page_info.fetch("endCursor")
+
+        after = page_info.fetch("endCursor")
+      end
+
+      products
     end
   end
 end
