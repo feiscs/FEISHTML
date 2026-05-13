@@ -90,14 +90,63 @@
     return Boolean(shopify?.domain && shopify?.storefrontToken && shopify?.enableRemoteProducts);
   }
 
+  function normalizeProductLimit(value, fallback = 50) {
+    const parsed = Number.parseInt(String(value || fallback).replace(/[,_\s]/g, ''), 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+  }
+
+  function mapShopifyProduct(node, index) {
+    const firstVariant = node.variants.edges[0]?.node;
+    const price = Number(firstVariant?.price?.amount || 0);
+    const oldPrice = Number(firstVariant?.compareAtPrice?.amount || 0) || null;
+    const colorValues = new Set();
+    const sizeValues = new Set();
+
+    node.variants.edges.forEach(({ node: variant }) => {
+      variant.selectedOptions.forEach((option) => {
+        if (/color/i.test(option.name)) colorValues.add(option.value);
+        if (/size|talla/i.test(option.name)) sizeValues.add(option.value);
+      });
+    });
+
+    return {
+      id: node.id,
+      shopifyVariantId: firstVariant?.id,
+      name: node.title,
+      category: node.productType || 'Shopify',
+      price,
+      oldPrice,
+      rating: 4.8,
+      badge: node.tags[0] || 'Shopify',
+      createdAt: 100 + index,
+      description: node.description || 'Producto sincronizado desde Shopify.',
+      colors: [...colorValues].length ? [...colorValues] : ['Default'],
+      sizes: [...sizeValues].length ? [...sizeValues] : ['Única'],
+      bg: '#eadfd0',
+      gradient: 'linear-gradient(145deg, #fff8ec, #c89b77)',
+      shape: '1.2rem',
+      image: node.featuredImage?.url,
+    };
+  }
+
   async function fetchShopifyProducts() {
     const { shopify } = getConfig();
     if (!hasShopify()) return [];
 
-    const endpoint = `https://${shopify.domain}/api/${shopify.apiVersion || '2026-01'}/graphql.json`;
+    const endpoint = `https://${shopify.domain}/api/${shopify.apiVersion || '2025-04'}/graphql.json`;
+    const requestedLimit = normalizeProductLimit(shopify.productLimit, 50);
+    const storefrontConnectionCap = 25000;
+    const maxPageSize = 250;
+    const productLimit = Math.min(requestedLimit, storefrontConnectionCap);
+
+    if (requestedLimit > storefrontConnectionCap) {
+      console.warn(`[FORMA] Shopify Storefront product limit capped at ${storefrontConnectionCap}. Use Admin/Bulk server-side exports for larger catalogs.`);
+    }
+
     const query = `
-      query FormaProducts($first: Int!) {
-        products(first: $first, sortKey: CREATED_AT, reverse: true) {
+      query FormaProducts($first: Int!, $after: String) {
+        products(first: $first, after: $after, sortKey: CREATED_AT, reverse: true) {
+          pageInfo { hasNextPage endCursor }
           edges {
             node {
               id
@@ -124,57 +173,37 @@
       }
     `;
 
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': shopify.storefrontToken,
-      },
-      body: JSON.stringify({ query, variables: { first: 12 } }),
-    });
+    const products = [];
+    let after = null;
 
-    if (!response.ok) {
-      throw new Error(`Shopify request failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-    if (data.errors) {
-      throw new Error(data.errors.map((error) => error.message).join(', '));
-    }
-
-    return data.data.products.edges.map(({ node }, index) => {
-      const firstVariant = node.variants.edges[0]?.node;
-      const price = Number(firstVariant?.price?.amount || 0);
-      const oldPrice = Number(firstVariant?.compareAtPrice?.amount || 0) || null;
-      const colorValues = new Set();
-      const sizeValues = new Set();
-
-      node.variants.edges.forEach(({ node: variant }) => {
-        variant.selectedOptions.forEach((option) => {
-          if (/color/i.test(option.name)) colorValues.add(option.value);
-          if (/size|talla/i.test(option.name)) sizeValues.add(option.value);
-        });
+    while (products.length < productLimit) {
+      const first = Math.min(maxPageSize, productLimit - products.length);
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': shopify.storefrontToken,
+        },
+        body: JSON.stringify({ query, variables: { first, after } }),
       });
 
-      return {
-        id: node.id,
-        shopifyVariantId: firstVariant?.id,
-        name: node.title,
-        category: node.productType || 'Shopify',
-        price,
-        oldPrice,
-        rating: 4.8,
-        badge: node.tags[0] || 'Shopify',
-        createdAt: 100 + index,
-        description: node.description || 'Producto sincronizado desde Shopify.',
-        colors: [...colorValues].length ? [...colorValues] : ['Default'],
-        sizes: [...sizeValues].length ? [...sizeValues] : ['Única'],
-        bg: '#eadfd0',
-        gradient: 'linear-gradient(145deg, #fff8ec, #c89b77)',
-        shape: '1.2rem',
-        image: node.featuredImage?.url,
-      };
-    });
+      if (!response.ok) {
+        throw new Error(`Shopify request failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.errors) {
+        throw new Error(data.errors.map((error) => error.message).join(', '));
+      }
+
+      const connection = data.data.products;
+      products.push(...connection.edges.map(({ node }, index) => mapShopifyProduct(node, products.length + index)));
+
+      if (!connection.pageInfo.hasNextPage || !connection.pageInfo.endCursor) break;
+      after = connection.pageInfo.endCursor;
+    }
+
+    return products;
   }
 
   window.FormaIntegrations = {

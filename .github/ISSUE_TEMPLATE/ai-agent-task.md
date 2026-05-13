@@ -13,6 +13,7 @@ Describe the customer/business outcome.
 - Storefront area:
 - Shopify/Supabase/Chatbase/Vercel impact:
 - Design references:
+- Plain `.patch`/`.diff` URL, if reviewing GitHub changes:
 
 ## Acceptance criteria
 

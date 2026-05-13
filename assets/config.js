@@ -1,16 +1,17 @@
 // FORMA runtime configuration.
 // Keep real credentials in Vercel Environment Variables or generate this file during deploy.
-// Values left blank keep the storefront in safe local-demo mode.
+// Public Shopify defaults are prefilled; token stays blank so local git remains safe/demo.
 window.FORMA_CONFIG = {
   shopify: {
-    domain: '',
+    domain: 'feispla.myshopify.com',
     storefrontToken: '',
-    apiVersion: '2026-01',
+    apiVersion: '2025-04',
     enableRemoteProducts: false,
+    productLimit: 50000,
   },
   supabase: {
-    url: '',
-    anonKey: '',
+    url: 'https://nejzzerwtgtbqawaizuo.supabase.co',
+    anonKey: 'sb_publishable_BPOIpRJaqBftujcnHY0mvw_jh8-88Kh',
     eventsTable: 'store_events',
     newsletterTable: 'newsletter_signups',
   },

@@ -18,7 +18,7 @@ It is not a vendored copy of Shopify's repository. It is the app-side code FORMA
 cd shopify-ruby
 cp .env.example .env
 bundle install
-SHOPIFY_PRODUCT_LIMIT=5 bundle exec ruby scripts/list_products.rb
+SHOPIFY_PRODUCT_LIMIT=50000 bundle exec ruby scripts/list_products.rb
 ```
 
 ## Required environment variables
@@ -28,10 +28,11 @@ SHOPIFY_PRODUCT_LIMIT=5 bundle exec ruby scripts/list_products.rb
 | `SHOPIFY_API_KEY` | Custom app API key. |
 | `SHOPIFY_API_SECRET` | Custom app API secret. |
 | `SHOPIFY_ADMIN_ACCESS_TOKEN` | Admin API access token for GraphQL Admin calls. |
-| `SHOPIFY_SHOP_DOMAIN` | Shop domain, for example `your-store.myshopify.com`. |
-| `SHOPIFY_API_VERSION` | Admin API version, default `2026-04`. |
+| `SHOPIFY_SHOP_DOMAIN` | Shop domain, configured here as `feispla.myshopify.com`. |
+| `SHOPIFY_API_VERSION` | Admin API version, configured here as `2025-04`. |
 | `SHOPIFY_SCOPES` | Comma-separated app scopes. |
 | `SHOPIFY_STOREFRONT_PUBLIC_TOKEN` / `SHOPIFY_STOREFRONT_PRIVATE_TOKEN` | Optional Storefront API tokens. |
+| `SHOPIFY_PRODUCT_LIMIT` | Optional product listing/sync target, for example `50000`; requests are paginated in pages of 250. |
 
 ## Notes
 
