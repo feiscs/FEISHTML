@@ -1,0 +1,9 @@
+<section class="forma-shell">
+  <h1 class="forma-title">{{ blog.title }}</h1>
+  {% for article in blog.articles %}
+    <article class="forma-card__body">
+      <h2><a class="forma-link" href="{{ article.url }}">{{ article.title }}</a></h2>
+      <p class="forma-muted">{{ article.excerpt_or_content | strip_html | truncate: 160 }}</p>
+    </article>
+  {% endfor %}
+</section>

@@ -2,17 +2,247 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FEISS Gaming — Perifericos Premium</title>
-    <meta name="description" content="Perifericos gaming de nivel profesional. Teclados, mice y headsets para dominar." />
+    <title>FORMA — Tienda premium de esenciales modernos</title>
+    <meta
+      name="description"
+      content="FORMA es una tienda e-commerce premium con moda, accesorios y lifestyle: catálogo filtrable, quick add, wishlist, detalle de producto, carrito lateral y checkout."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-1vFVWcBA.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BkxpRRiF.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/store.css" />
+    <script>
+      window.addEventListener('error', function (event) {
+        document.documentElement.dataset.runtimeError = event.message || 'Error de JavaScript';
+      });
+    </script>
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/integrations.js"></script>
+    <script defer src="assets/store.js"></script>
   </head>
-  <body class="bg-black text-white">
-    <div id="root"></div>
+  <body>
+    <header class="navbar" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="FORMA inicio">
+        <span class="brand-mark">F</span>
+        <span>FORMA</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Secciones de la tienda">
+        <a href="#productos">Productos</a>
+        <a href="#coleccion">Colección</a>
+        <a href="#garantias">Garantías</a>
+        <a href="#newsletter">Newsletter</a>
+      </nav>
+
+      <div class="nav-actions">
+        <label class="search-box" aria-label="Buscar productos">
+          <span aria-hidden="true">⌕</span>
+          <input data-search type="search" placeholder="Buscar" />
+        </label>
+        <button class="nav-icon" type="button" data-open-wishlist aria-label="Abrir favoritos">
+          ♡<strong data-wishlist-count>0</strong>
+        </button>
+        <button class="nav-icon" type="button" aria-label="Cuenta de usuario">◎</button>
+        <button class="cart-trigger" type="button" data-open-cart aria-label="Abrir carrito">
+          Bolsa <strong data-cart-count>0</strong>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">Nueva campaña · Primavera urbana</p>
+          <h1>Esenciales con forma, intención y carácter.</h1>
+          <p>
+            Compra una selección curada de moda, accesorios y objetos lifestyle con estética editorial, materiales premium y experiencia de compra sin fricción.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#productos">Comprar ahora</a>
+            <button class="btn btn-light" type="button" data-open-featured>Ver campaña</button>
+          </div>
+          <dl class="stats" aria-label="Estadísticas de la tienda">
+            <div><dt>24h</dt><dd>despacho</dd></div>
+            <div><dt>+18k</dt><dd>clientes</dd></div>
+            <div><dt>4.9</dt><dd>rating</dd></div>
+          </dl>
+        </div>
+        <div class="campaign-card" aria-label="Imagen de campaña FORMA">
+          <div class="campaign-image" role="img" aria-label="Bolso y prendas de la campaña primavera urbana"></div>
+          <div class="campaign-note">
+            <span>Drop 04</span>
+            <strong>Minimal Utility</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-bar" id="garantias" aria-label="Características de compra">
+        <article><span>🚚</span><strong>Envío gratis</strong><p>En pedidos desde $100.</p></article>
+        <article><span>↩</span><strong>Devoluciones fáciles</strong><p>30 días para cambios.</p></article>
+        <article><span>✦</span><strong>Garantía premium</strong><p>Materiales verificados.</p></article>
+        <article><span>◌</span><strong>Soporte humano</strong><p>Asesoría de estilo real.</p></article>
+      </section>
+
+      <section class="catalog" id="productos">
+        <div class="section-head">
+          <p class="eyebrow">Catálogo</p>
+          <h2>Compra por categoría</h2>
+          <p>Filtros rápidos, ordenamiento inteligente, vista compacta y tarjetas listas para conversión.</p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="tabs" role="tablist" aria-label="Filtrar por categoría">
+            <button class="tab is-active" type="button" data-filter="all">Todo</button>
+            <button class="tab" type="button" data-filter="Prendas">Prendas</button>
+            <button class="tab" type="button" data-filter="Bolsos">Bolsos</button>
+            <button class="tab" type="button" data-filter="Accesorios">Accesorios</button>
+            <button class="tab" type="button" data-filter="Hogar">Hogar</button>
+          </div>
+          <div class="toolbar-actions">
+            <label>
+              Ordenar
+              <select data-sort>
+                <option value="newest">Novedad</option>
+                <option value="price-asc">Precio menor</option>
+                <option value="price-desc">Precio mayor</option>
+                <option value="rating">Rating</option>
+              </select>
+            </label>
+            <button class="view-toggle" type="button" data-view-toggle aria-pressed="false">Vista compacta</button>
+          </div>
+        </div>
+
+        <div class="product-grid" data-product-grid>
+          <article class="product-card" style="--product-bg:#ead9c3;--product-gradient:linear-gradient(145deg,#d8b894,#f8ecdc 48%,#77624b 49%,#b96f4f);--shape:44% 44% 1.2rem 1.2rem;">
+            <div class="product-media"><span class="badge">-20%</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Trench Lino Arena</h3><span class="rating">★ 4.9</span></div><p>Trench liviano de lino premium con caída relajada.</p><div class="price-line"><strong>$148.00</strong><span>Prendas</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#e8c9aa;--product-gradient:linear-gradient(160deg,#8a5136,#c48763);--shape:48% 48% 18% 18%;">
+            <div class="product-media"><span class="badge">Nuevo</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Bolso Arc Cognac</h3><span class="rating">★ 4.8</span></div><p>Bolso estructurado con asa curva y cierre magnético.</p><div class="price-line"><strong>$96.00</strong><span>Bolsos</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#eee4d6;--product-gradient:repeating-linear-gradient(90deg,#f7efe4 0 8px,#ddcbb7 8px 13px);--shape:1.1rem;">
+            <div class="product-media"><span class="badge">-21%</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Set Rib Studio</h3><span class="rating">★ 4.7</span></div><p>Conjunto ribbed de dos piezas con textura suave.</p><div class="price-line"><strong>$82.00</strong><span>Prendas</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#e7ddcd;--product-gradient:linear-gradient(145deg,#fff8ec,#c89b77);--shape:50% 50% 34% 34%;">
+            <div class="product-media"><span class="badge">Nuevo</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Jarrón Forma 02</h3><span class="rating">★ 4.9</span></div><p>Pieza cerámica hecha a mano con silueta orgánica.</p><div class="price-line"><strong>$58.00</strong><span>Hogar</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#dde1d2;--product-gradient:linear-gradient(45deg,#fff 0 25%,#6f7758 25% 50%,#d7a075 50% 75%,#fff 75%);--shape:0.8rem;">
+            <div class="product-media"><span class="badge">Limited</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Pañuelo Seda Grid</h3><span class="rating">★ 4.6</span></div><p>Pañuelo de seda con patrón geométrico satinado.</p><div class="price-line"><strong>$44.00</strong><span>Accesorios</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#dcc7ae;--product-gradient:linear-gradient(90deg,#2a211b 0 22%,#b96f4f 22% 78%,#2a211b 78%);--shape:999px;">
+            <div class="product-media"><span class="badge">-24%</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Cinturón Nudo</h3><span class="rating">★ 4.7</span></div><p>Cinturón en cuero vegetal con hebilla escultural.</p><div class="price-line"><strong>$52.00</strong><span>Accesorios</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#e2d3bf;--product-gradient:linear-gradient(160deg,#efe4d4 0 45%,#6f7758 46% 75%,#2b2923 76%);--shape:1rem 1rem 2rem 2rem;">
+            <div class="product-media"><span class="badge">Nuevo</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Tote Weekend</h3><span class="rating">★ 4.8</span></div><p>Tote amplio de canvas encerado con correas de cuero.</p><div class="price-line"><strong>$112.00</strong><span>Bolsos</span></div></div>
+          </article>
+          <article class="product-card" style="--product-bg:#eadfd0;--product-gradient:linear-gradient(180deg,#fff1c7 0 12%,#37312c 13% 100%);--shape:0.5rem 0.5rem 1.2rem 1.2rem;">
+            <div class="product-media"><span class="badge">-20%</span><div class="product-visual" aria-hidden="true"></div></div>
+            <div class="product-info"><div class="product-top"><h3>Vela Santal 300g</h3><span class="rating">★ 4.5</span></div><p>Vela aromática de santal, ámbar y cedro.</p><div class="price-line"><strong>$38.00</strong><span>Hogar</span></div></div>
+          </article>
+        </div>
+        <p class="empty-state" data-empty-state hidden>No encontramos productos con esa búsqueda.</p>
+        <p class="runtime-panel" data-runtime-status>Catálogo HTML cargado. El JavaScript activará filtros, carrito, wishlist y modal al terminar de cargar.</p>
+      </section>
+
+      <section class="editorial" id="coleccion">
+        <div>
+          <p class="eyebrow">Colección cápsula</p>
+          <h2>Diseñada para combinar sin pensar.</h2>
+          <p>
+            Piezas neutras, siluetas limpias y acentos de textura para elevar outfits diarios, viajes cortos y espacios personales.
+          </p>
+        </div>
+        <div class="editorial-grid" aria-label="Imágenes personalizadas de colección">
+          <span class="art art-one"></span>
+          <span class="art art-two"></span>
+          <span class="art art-three"></span>
+        </div>
+      </section>
+
+      <section class="ops-stack" aria-label="Stack de operaciones e integraciones">
+        <div>
+          <p class="eyebrow">Operación conectada</p>
+          <h2>Lista para Shopify, Supabase, Chatbase, GitHub AI y Vercel.</h2>
+          <p>
+            La tienda queda organizada para usar Shopify como catálogo y checkout, Supabase como CRM/eventos, Chatbase como asistente, GitHub con agente IA tipo Claude para PRs y Vercel para previews y producción.
+          </p>
+        </div>
+        <div class="ops-grid">
+          <article><strong>Shopify</strong><span data-integration-status="shopify">Modo demo</span><p>Storefront API para productos y variantes.</p></article>
+          <article><strong>Supabase</strong><span data-integration-status="supabase">Modo demo</span><p>Eventos, newsletter y base operativa.</p></article>
+          <article><strong>Chatbase</strong><span data-integration-status="chatbase">Modo demo</span><p>Chatbot de soporte cargado por configuración.</p></article>
+          <article><strong>GitHub AI</strong><span>Claude-ready</span><p>Flujo de issues, ramas, PRs y revisión.</p></article>
+          <article><strong>Vercel</strong><span>Preview-ready</span><p>Deploy estático con headers y rewrites.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <aside class="drawer" data-cart-drawer aria-hidden="true" aria-label="Carrito lateral">
+      <div class="drawer-panel">
+        <header class="drawer-head">
+          <div><p class="eyebrow">Tu bolsa</p><h2>Carrito</h2></div>
+          <button class="close-btn" type="button" data-close-cart aria-label="Cerrar carrito">×</button>
+        </header>
+        <div class="shipping-meter">
+          <div class="meter-copy" data-shipping-copy>Agrega productos para desbloquear envío gratis.</div>
+          <span><i data-shipping-progress></i></span>
+        </div>
+        <div class="cart-items" data-cart-items></div>
+        <footer class="cart-footer">
+          <dl>
+            <div><dt>Subtotal</dt><dd data-subtotal>$0.00</dd></div>
+            <div><dt>Envío</dt><dd data-shipping-cost>$8.00</dd></div>
+            <div><dt>Total</dt><dd data-total>$0.00</dd></div>
+          </dl>
+          <a class="btn btn-dark" href="#newsletter" data-close-cart>Checkout</a>
+        </footer>
+      </div>
+    </aside>
+
+    <aside class="drawer wishlist-drawer" data-wishlist-drawer aria-hidden="true" aria-label="Favoritos">
+      <div class="drawer-panel small-panel">
+        <header class="drawer-head">
+          <div><p class="eyebrow">Wishlist</p><h2>Favoritos</h2></div>
+          <button class="close-btn" type="button" data-close-wishlist aria-label="Cerrar favoritos">×</button>
+        </header>
+        <div class="wishlist-items" data-wishlist-items></div>
+      </div>
+    </aside>
+
+    <dialog class="product-modal" data-product-modal aria-label="Detalle de producto">
+      <button class="close-btn modal-close" type="button" data-close-modal aria-label="Cerrar detalle">×</button>
+      <div class="modal-grid" data-modal-content></div>
+    </dialog>
+
+    <footer class="footer" id="newsletter">
+      <div>
+        <a class="brand" href="#inicio"><span class="brand-mark">F</span><span>FORMA</span></a>
+        <p>Un e-commerce editorial construido para vender productos premium con claridad, confianza y estilo.</p>
+      </div>
+      <form class="newsletter" data-newsletter-form>
+        <label for="email-newsletter">Recibe drops y descuentos privados</label>
+        <div>
+          <input id="email-newsletter" required type="email" placeholder="tu@email.com" />
+          <button class="btn btn-dark" type="submit">Suscribirme</button>
+        </div>
+        <p data-newsletter-message role="status"></p>
+      </form>
+      <nav aria-label="Enlaces de footer">
+        <a href="#productos">Tienda</a>
+        <a href="#garantias">Cambios</a>
+        <a href="#newsletter">Contacto</a>
+      </nav>
+    </footer>
   </body>
+</html>
 </html>

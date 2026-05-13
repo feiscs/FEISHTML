@@ -1,0 +1,23 @@
+<!-- /templates/gift_card.liquid -->
+{% layout none %}
+{% assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency %}
+<!doctype html>
+<!--[if IE 8]><html class="template-giftcard no-js lt-ie9" lang="{{ request.locale.iso_code }}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 template-giftcard no-js" lang="{{ request.locale.iso_code }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="template-giftcard no-js" lang="{{ request.locale.iso_code }}"><!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ 'gift_cards.issued.title' | t }} – {{ shop.name }}</title>
+    {{ 'gift-card.scss.liquid' | asset_url | stylesheet_tag }}
+  </head>
+  <body class="gift-card-template">
+    <main class="gift-card" role="main">
+      <h1>{{ 'gift_cards.issued.title' | t }}</h1>
+      <p>{{ 'gift_cards.issued.subtext' | t }}</p>
+      <strong>{{ formatted_initial_value }}</strong>
+      <div class="gift-card__code">{{ gift_card.code | format_code }}</div>
+      <p>{{ 'gift_cards.issued.redeem' | t }}</p>
+    </main>
+  </body>
+</html>

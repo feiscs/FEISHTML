@@ -1,0 +1,19 @@
+<section class="forma-shell forma-hero">
+  <div>
+    {% if product.featured_image %}
+      {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'eager', alt: product.featured_image.alt | escape }}
+    {% endif %}
+  </div>
+  <div>
+    <h1>{{ product.title }}</h1>
+    <p class="forma-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+    <div class="forma-muted">{{ product.description }}</div>
+
+    {% form 'product', product %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button class="forma-button" type="submit" {% unless product.available %}disabled{% endunless %}>
+        <span data-add-label>{% if product.available %}{{ 'product.add_to_cart' | t }}{% else %}{{ 'product.sold_out' | t }}{% endif %}</span>
+      </button>
+    {% endform %}
+  </div>
+</section>

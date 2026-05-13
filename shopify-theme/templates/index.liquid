@@ -1,0 +1,31 @@
+<section class="forma-shell forma-hero">
+  <div>
+    <p class="forma-muted">{{ 'home.eyebrow' | t }}</p>
+    <h1>{{ 'home.heading' | t }}</h1>
+    <p>{{ 'home.text' | t }}</p>
+    <a class="forma-button" href="{{ routes.all_products_collection_url }}">{{ 'home.cta' | t }}</a>
+  </div>
+  <div class="forma-card">
+    <div class="forma-card__media"></div>
+    <div class="forma-card__body">
+      <strong>{{ 'home.theme_card_title' | t }}</strong>
+      <p class="forma-muted">{{ 'home.theme_card_text' | t }}</p>
+    </div>
+  </div>
+</section>
+
+{% assign featured_collection = collections[settings.featured_collection] | default: collections.all %}
+{% if featured_collection.products_count > 0 %}
+  <section class="forma-shell">
+    <h2 class="forma-title">{{ featured_collection.title }}</h2>
+    <div class="forma-grid">
+      {% for product in featured_collection.products limit: 4 %}
+        {% render 'product-card', product: product, collection: featured_collection %}
+      {% endfor %}
+    </div>
+  </section>
+{% else %}
+  <section class="forma-shell">
+    {% render 'onboarding-featured-collections' %}
+  </section>
+{% endif %}
