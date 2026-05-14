@@ -467,10 +467,20 @@ document.querySelector('[data-view-toggle]').addEventListener('click', (event) =
 
 document.querySelector('[data-newsletter-form]').addEventListener('submit', async (event) => {
   event.preventDefault();
-  const email = event.currentTarget.querySelector('input[type="email"]').value;
+  const input = event.currentTarget.querySelector('input[type="email"]');
+  const email = input.value.trim();
+  if (!email) return;
+
   await window.FormaIntegrations?.saveNewsletter?.(email);
   window.FormaIntegrations?.trackEvent('newsletter_signup', { email });
-  document.querySelector('[data-newsletter-message]').textContent = 'Listo. Te avisaremos del próximo drop privado.';
+
+  const target = 'feispla@hotmail.com';
+  const subject = encodeURIComponent('Nuevo registro de newsletter FORMA');
+  const body = encodeURIComponent(`Correo del cliente: ${email}`);
+  window.location.href = `mailto:${target}?subject=${subject}&body=${body}`;
+
+  document.querySelector('[data-newsletter-message]').textContent = 'Listo. Abrimos tu app de correo para enviar el registro.';
+  event.currentTarget.reset();
 });
 
 modal.addEventListener('click', (event) => {
