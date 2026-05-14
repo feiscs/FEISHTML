@@ -163,62 +163,53 @@
       </section>
     </main>
 
-    <aside class="drawer" data-cart-drawer aria-hidden="true" aria-label="Carrito lateral">
-      <div class="drawer-panel">
-        <header class="drawer-head">
-          <div><p class="eyebrow">Tu bolsa</p><h2>Carrito</h2></div>
-          <button class="close-btn" type="button" data-close-cart aria-label="Cerrar carrito">×</button>
-        </header>
-        <div class="shipping-meter">
-          <div class="meter-copy" data-shipping-copy>Agrega productos para desbloquear envío gratis.</div>
-          <span><i data-shipping-progress></i></span>
-        </div>
-        <div class="cart-items" data-cart-items></div>
-        <footer class="cart-footer">
-          <dl>
-            <div><dt>Subtotal</dt><dd data-subtotal>$0.00</dd></div>
-            <div><dt>Envío</dt><dd data-shipping-cost>$8.00</dd></div>
-            <div><dt>Total</dt><dd data-total>$0.00</dd></div>
-          </dl>
-          <a class="btn btn-dark" href="#newsletter" data-close-cart>Checkout</a>
-        </footer>
-      </div>
-    </aside>
+   diff --git a/index.html b/index.html
+index 5543082c9361d99e38f3bbd8ef2ac7c2c4fb4ae4..25ea7b4f7732fb6a4b03768afee1285576bd43dc 100644
+--- a/index.html
++++ b/index.html
+@@ -167,43 +167,43 @@
+           </dl>
+           <a class="btn btn-dark" href="#newsletter" data-close-cart>Checkout</a>
+         </footer>
+       </div>
+     </aside>
+ 
+     <aside class="drawer wishlist-drawer" data-wishlist-drawer aria-hidden="true" aria-label="Favoritos">
+       <div class="drawer-panel small-panel">
+         <header class="drawer-head">
+           <div><p class="eyebrow">Wishlist</p><h2>Favoritos</h2></div>
+           <button class="close-btn" type="button" data-close-wishlist aria-label="Cerrar favoritos">×</button>
+         </header>
+         <div class="wishlist-items" data-wishlist-items></div>
+       </div>
+     </aside>
+ 
+     <dialog class="product-modal" data-product-modal aria-label="Detalle de producto">
+       <button class="close-btn modal-close" type="button" data-close-modal aria-label="Cerrar detalle">×</button>
+       <div class="modal-grid" data-modal-content></div>
+     </dialog>
+ 
+     <footer class="footer" id="newsletter">
+       <div>
+         <a class="brand" href="#inicio"><span class="brand-mark">F</span><span>FORMA</span></a>
+         <p>Un e-commerce editorial construido para vender productos premium con claridad, confianza y estilo.</p>
+-        <p><strong>Contacto comercial:</strong> FORMA Ventas · <a href="mailto:feispla@hotmail.com">feispla@hotmail.com</a></p>
++        <p><strong>Contacto comercial:</strong> FORMA Ventas · <a href="mailto:feispla@forma.com" aria-label="Enviar correo a FORMA Ventas">feispla@forma.com</a></p>
+       </div>
+       <form class="newsletter" data-newsletter-form>
+         <label for="email-newsletter">Recibe drops y descuentos privados</label>
+         <div>
+           <input id="email-newsletter" required type="email" placeholder="tu@email.com" />
+           <button class="btn btn-dark" type="submit">Suscribirme</button>
+         </div>
+         <p data-newsletter-message role="status"></p>
+       </form>
+       <nav aria-label="Enlaces de footer">
+         <a href="#productos">Tienda</a>
+         <a href="#garantias">Cambios</a>
+         <a href="#newsletter">Contacto</a>
+       </nav>
+     </footer>
+   </body>
+ </html>
 
-    <aside class="drawer wishlist-drawer" data-wishlist-drawer aria-hidden="true" aria-label="Favoritos">
-      <div class="drawer-panel small-panel">
-        <header class="drawer-head">
-          <div><p class="eyebrow">Wishlist</p><h2>Favoritos</h2></div>
-          <button class="close-btn" type="button" data-close-wishlist aria-label="Cerrar favoritos">×</button>
-        </header>
-        <div class="wishlist-items" data-wishlist-items></div>
-      </div>
-    </aside>
-
-    <dialog class="product-modal" data-product-modal aria-label="Detalle de producto">
-      <button class="close-btn modal-close" type="button" data-close-modal aria-label="Cerrar detalle">×</button>
-      <div class="modal-grid" data-modal-content></div>
-    </dialog>
-
-    <footer class="footer" id="newsletter">
-      <div>
-        <a class="brand" href="#inicio"><span class="brand-mark">F</span><span>FORMA</span></a>
-        <p>Un e-commerce editorial construido para vender productos premium con claridad, confianza y estilo.</p>
-        <p><strong>Contacto comercial:</strong> FORMA Ventas · <a href="mailto:feispla@hotmail.com" aria-label="Enviar correo a FORMA Ventas">feispla@forma.com</a></p>
-      </div>
-      <form class="newsletter" data-newsletter-form>
-        <label for="email-newsletter">Recibe drops y descuentos privados</label>
-        <div>
-          <input id="email-newsletter" required type="email" placeholder="tu@email.com" />
-          <button class="btn btn-dark" type="submit">Suscribirme</button>
-        </div>
-        <p data-newsletter-message role="status"></p>
-      </form>
-      <nav aria-label="Enlaces de footer">
-        <a href="#productos">Tienda</a>
-        <a href="#garantias">Cambios</a>
-        <a href="#newsletter">Contacto</a>
-      </nav>
-    </footer>
-  </body>
-</html>
