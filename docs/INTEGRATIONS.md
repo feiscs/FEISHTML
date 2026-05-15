@@ -71,14 +71,29 @@ SHOPIFY_PRODUCT_LIMIT=5 bundle exec ruby scripts/list_products.rb
 
 The static Vercel storefront can keep using `assets/integrations.js` for safe Storefront/demo behavior, while this Ruby adapter handles private Admin API work.
 
+
+## Stripe + Vercel webhook path
+
+1. Rotate any exposed Stripe credentials before configuration.
+2. In Vercel Project Settings → Environment Variables, set:
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_PUBLISHABLE_KEY`
+   - `STRIPE_WEBHOOK_SECRET` (must start with `whsec_`)
+   - `APP_URL` (for this project: `https://feishtml.vercel.app`)
+3. In Stripe Dashboard, configure a webhook endpoint to:
+   - `https://feishtml.vercel.app/api/stripe-webhook`
+4. Select required events (for example `checkout.session.completed`) and use the generated `whsec_...` value in Vercel as `STRIPE_WEBHOOK_SECRET`.
+5. Deploy, then send a test event from Stripe and verify `200` responses from the webhook route.
+
 ## Supabase path
 
 1. Create a Supabase project.
-2. Run the Supabase migrations in `supabase/migrations/`; it enables RLS and anonymous insert-only policies with basic length/shape checks.
+2. Run the Supabase migrations in `supabase/migrations/`; it enables RLS and anonymous insert-only policies with basic length/shape checks. The analytics rollup migration (`202605150001_analytics_rollup.sql`) adds private daily aggregate tables and a secure definer function for backend-only reporting.
 3. Put the project URL and anon key into runtime config. The current project URL is `https://nejzzerwtgtbqawaizuo.supabase.co` and the browser key is the provided `sb_publishable_...` key.
 4. The storefront will insert:
    - `cart_add` events into `store_events`.
    - `newsletter_signup` rows into `newsletter_signups`.
+5. The current browser integration is insert-only for Supabase and does not run `SELECT` queries against `store_events` or `newsletter_signups`; this aligns with stricter RLS setups that deny reads to anonymous users.
 
 ## Chatbase path
 
