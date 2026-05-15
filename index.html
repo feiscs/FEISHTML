@@ -18,6 +18,10 @@
     <script defer src="assets/config.js"></script>
     <script defer src="assets/integrations.js"></script>
     <script defer src="assets/store.js"></script>
+    <script type="module">
+      import { inject } from './assets/analytics.js';
+      inject();
+    </script>
   </head>
   <body>
     <header class="navbar" aria-label="Navegación principal">
