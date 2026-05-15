@@ -71,6 +71,20 @@ SHOPIFY_PRODUCT_LIMIT=5 bundle exec ruby scripts/list_products.rb
 
 The static Vercel storefront can keep using `assets/integrations.js` for safe Storefront/demo behavior, while this Ruby adapter handles private Admin API work.
 
+
+## Stripe + Vercel webhook path
+
+1. Rotate any exposed Stripe credentials before configuration.
+2. In Vercel Project Settings → Environment Variables, set:
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_PUBLISHABLE_KEY`
+   - `STRIPE_WEBHOOK_SECRET` (must start with `whsec_`)
+   - `APP_URL` (for this project: `https://feishtml.vercel.app`)
+3. In Stripe Dashboard, configure a webhook endpoint to:
+   - `https://feishtml.vercel.app/api/stripe-webhook`
+4. Select required events (for example `checkout.session.completed`) and use the generated `whsec_...` value in Vercel as `STRIPE_WEBHOOK_SECRET`.
+5. Deploy, then send a test event from Stripe and verify `200` responses from the webhook route.
+
 ## Supabase path
 
 1. Create a Supabase project.
