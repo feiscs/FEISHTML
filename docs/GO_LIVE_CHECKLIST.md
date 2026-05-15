@@ -24,7 +24,8 @@ The browser storefront only needs Storefront API access. Do not place private Ad
 ## 3. Supabase
 
 - [ ] Create a Supabase project.
-- [ ] Run the Supabase migrations in `supabase/migrations/`.
+- [ ] Run the Supabase migrations in `supabase/migrations/` (for hosted project: `supabase link --project-ref <ref>` then `supabase db push`).
+- [ ] Run `docs/SUPABASE_DEPLOY_VERIFY.md` SQL checks to confirm analytics tables, policies, and function grants in the target project.
 - [ ] Confirm row-level security policies in the migration are applied before production traffic; they allow anonymous inserts only, with basic length/shape checks.
 - [ ] Collect:
   - `SUPABASE_URL` — configured as `https://nejzzerwtgtbqawaizuo.supabase.co`.
