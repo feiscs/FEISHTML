@@ -449,6 +449,14 @@ document.addEventListener('click', (event) => {
 
   if (event.target.closest('[data-open-cart]')) openDrawer(cartDrawer);
   if (event.target.closest('[data-close-cart]')) closeDrawer(cartDrawer);
+
+  if (event.target.closest('.cart-footer .btn.btn-dark')) {
+    event.preventDefault();
+    goToStripeCheckout().catch((error) => {
+      console.error('[FORMA] Stripe checkout error:', error);
+      document.querySelector('[data-newsletter-message]').textContent = 'No pudimos iniciar el pago. Intenta de nuevo.';
+    });
+  }
   if (event.target.closest('[data-open-wishlist]')) openDrawer(wishlistDrawer);
   if (event.target.closest('[data-close-wishlist]')) closeDrawer(wishlistDrawer);
   if (event.target.closest('[data-close-modal]')) closeModal();
@@ -464,6 +472,30 @@ document.querySelector('[data-view-toggle]').addEventListener('click', (event) =
   event.currentTarget.setAttribute('aria-pressed', String(store.state.compact));
   renderProducts();
 });
+
+
+async function goToStripeCheckout() {
+  const items = store.state.cart.map((item) => ({
+    name: item.name,
+    price: item.price,
+    quantity: item.quantity,
+  }));
+
+  if (!items.length) {
+    document.querySelector('[data-newsletter-message]').textContent = 'Tu carrito está vacío. Agrega productos antes de pagar.';
+    return;
+  }
+
+  const response = await fetch('/api/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items }),
+  });
+
+  const data = await response.json();
+  if (!response.ok || !data.url) throw new Error(data.error || 'No se pudo iniciar el checkout.');
+  window.location.href = data.url;
+}
 
 document.querySelector('[data-newsletter-form]').addEventListener('submit', async (event) => {
   event.preventDefault();
