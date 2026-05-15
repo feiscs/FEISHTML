@@ -2,6 +2,8 @@
 
 If `analytics_event_cursor`, `analytics_event_daily`, and `analytics_leads_daily` do not appear in `public`, your local migration file exists but has not been applied to the target Supabase project yet.
 
+Important: hosted deploy pipelines commonly apply only new migration filenames. The follow-up RLS hardening is in `202605150002_storefront_insert_only_followup.sql`, so do not rely on edits to previously applied migration files.
+
 ## 1) Deploy migrations to the correct project
 
 ```bash
