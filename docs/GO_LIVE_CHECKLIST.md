@@ -66,3 +66,4 @@ Send these values when you are ready to connect production services:
 2. Supabase: project URL, anon key, events table name, and newsletter table name.
 3. Chatbase: bot ID and enabled flag.
 4. Optional Shopify Admin Ruby: shop domain and Admin API access token for server-side scripts only.
+
